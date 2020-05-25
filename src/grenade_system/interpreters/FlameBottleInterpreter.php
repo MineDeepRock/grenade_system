@@ -4,10 +4,9 @@
 namespace grenade_system\interpreters;
 
 
-use Closure;
 use grenade_system\controllers\EventController;
 use grenade_system\models\FlameBottle;
-use grenade_system\pmmp\clients\FlameBottleClient;
+use grenade_system\clients\FlameBottleClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
 use pocketmine\math\Vector3;
 use pocketmine\Player;

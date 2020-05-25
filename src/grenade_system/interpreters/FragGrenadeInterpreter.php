@@ -6,7 +6,7 @@ namespace grenade_system\interpreters;
 
 use grenade_system\controllers\EventController;
 use grenade_system\models\FragGrenade;
-use grenade_system\pmmp\clients\FragGrenadeClient;
+use grenade_system\clients\FragGrenadeClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
 use pocketmine\Player;
 use pocketmine\scheduler\ClosureTask;

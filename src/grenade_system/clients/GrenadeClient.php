@@ -1,7 +1,7 @@
 <?php
 
 
-namespace grenade_system\pmmp\clients;
+namespace grenade_system\clients;
 
 abstract class GrenadeClient
 {

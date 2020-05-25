@@ -1,5 +1,6 @@
 <?php
 
+namespace grenade_system;
 
 use grenade_system\listener\GrenadeListener;
 use grenade_system\pmmp\entities\FlameBottleEntity;

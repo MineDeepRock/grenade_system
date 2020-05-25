@@ -6,7 +6,7 @@ namespace grenade_system\interpreters;
 
 use Closure;
 use grenade_system\models\SmokeGrenade;
-use grenade_system\pmmp\clients\SmokeGrenadeClient;
+use grenade_system\clients\SmokeGrenadeClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
