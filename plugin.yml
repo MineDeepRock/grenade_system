@@ -1,0 +1,9 @@
+name: GrenadeSystem
+main: Main
+version: 1.0.0
+api: 3.0.0
+
+permissions:
+  GrenadeSystem:
+    default: false
+    description: "ベース"
