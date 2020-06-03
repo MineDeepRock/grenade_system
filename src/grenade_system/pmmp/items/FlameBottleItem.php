@@ -6,7 +6,7 @@ namespace grenade_system\pmmp\items;
 
 use pocketmine\item\Item;
 
-class FlameBottleItem extends Item
+class FlameBottleItem extends GrenadeItem
 {
     public const ITEM_ID = Item::BLAZE_POWDER;
 

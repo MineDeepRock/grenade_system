@@ -5,10 +5,9 @@ namespace grenade_system\listener;
 use grenade_system\pmmp\entities\FlameBottleEntity;
 use grenade_system\pmmp\entities\FragGrenadeEntity;
 use grenade_system\pmmp\entities\SmokeGrenadeEntity;
-use grenade_system\pmmp\events\FlameBottleExplodeEvent;
-use grenade_system\pmmp\events\FragGrenadeExplodeEvent;
 use grenade_system\pmmp\items\FlameBottleItem;
 use grenade_system\pmmp\items\FragGrenadeItem;
+use grenade_system\pmmp\items\GrenadeItem;
 use grenade_system\pmmp\items\SmokeGrenadeItem;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -63,26 +62,7 @@ class GrenadeListener implements Listener
         if ($event->getAction() !== PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
             $player = $event->getPlayer();
             $item = $player->getInventory()->getItemInHand();
-            switch ($item->getId()) {
-                case FragGrenadeItem::ITEM_ID:
-                    $this->spawnFragGrenadeEntity($player);
-                    break;
-                case SmokeGrenadeItem::ITEM_ID:
-                    $this->spawnSmokeGrenadeEntity($player);
-                    break;
-                case FlameBottleItem::ITEM_ID:
-                    $this->spawnFlameBottleEntity($player);
-                    break;
-            }
-        }
-    }
-
-    public function onTapAir(DataPacketReceiveEvent $event) {
-        $packet = $event->getPacket();
-        if ($packet instanceof LevelSoundEventPacket) {
-            if ($packet->sound === LevelSoundEventPacket::SOUND_ATTACK_NODAMAGE) {
-                $player = $event->getPlayer();
-                $item = $event->getPlayer()->getInventory()->getItemInHand();
+            if ($item instanceof GrenadeItem) {
                 switch ($item->getId()) {
                     case FragGrenadeItem::ITEM_ID:
                         $this->spawnFragGrenadeEntity($player);
@@ -93,6 +73,29 @@ class GrenadeListener implements Listener
                     case FlameBottleItem::ITEM_ID:
                         $this->spawnFlameBottleEntity($player);
                         break;
+                }
+            }
+        }
+    }
+
+    public function onTapAir(DataPacketReceiveEvent $event) {
+        $packet = $event->getPacket();
+        if ($packet instanceof LevelSoundEventPacket) {
+            if ($packet->sound === LevelSoundEventPacket::SOUND_ATTACK_NODAMAGE) {
+                $player = $event->getPlayer();
+                $item = $event->getPlayer()->getInventory()->getItemInHand();
+                if ($item instanceof GrenadeItem) {
+                    switch ($item->getId()) {
+                        case FragGrenadeItem::ITEM_ID:
+                            $this->spawnFragGrenadeEntity($player);
+                            break;
+                        case SmokeGrenadeItem::ITEM_ID:
+                            $this->spawnSmokeGrenadeEntity($player);
+                            break;
+                        case FlameBottleItem::ITEM_ID:
+                            $this->spawnFlameBottleEntity($player);
+                            break;
+                    }
                 }
             }
         }

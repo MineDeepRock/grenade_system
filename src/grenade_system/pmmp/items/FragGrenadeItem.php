@@ -6,7 +6,7 @@ namespace grenade_system\pmmp\items;
 
 use pocketmine\item\Item;
 
-class FragGrenadeItem extends Item
+class FragGrenadeItem extends GrenadeItem
 {
     public const ITEM_ID = Item::GHAST_TEAR;
 
