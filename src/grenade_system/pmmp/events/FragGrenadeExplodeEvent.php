@@ -5,7 +5,6 @@ namespace grenade_system\pmmp\events;
 
 
 use pocketmine\Player;
-use pocketmine\plugin\PluginBase;
 
 class FragGrenadeExplodeEvent extends GrenadeExplodeEvent
 {
@@ -22,11 +21,10 @@ class FragGrenadeExplodeEvent extends GrenadeExplodeEvent
      */
     private $distance;
 
-    public function __construct(PluginBase $plugin,Player $owner, Player $victim, float $distance) {
+    public function __construct(Player $owner, Player $victim, float $distance) {
         $this->owner = $owner;
         $this->victim = $victim;
         $this->distance = $distance;
-        parent::__construct($plugin);
     }
 
     /**

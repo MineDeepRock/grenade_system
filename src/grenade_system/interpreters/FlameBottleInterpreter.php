@@ -4,10 +4,10 @@
 namespace grenade_system\interpreters;
 
 
-use grenade_system\controllers\EventController;
 use grenade_system\models\FlameBottle;
 use grenade_system\clients\FlameBottleClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
+use grenade_system\pmmp\events\FlameBottleExplodeEvent;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\scheduler\ClosureTask;
@@ -38,9 +38,9 @@ class FlameBottleInterpreter extends GrenadeInterpreter
                         $entity->getZ() + rand(-FlameBottle::RANGE, FlameBottle::RANGE)
                     ));
                 }      $players = $this->getWithinRangePlayers($entity->getPosition());
-                $controller = EventController::getInstance();
                 foreach ($players as $player) {
-                    $controller->callFlameBottleExplodeEvent($this->owner, $player);
+                    $event = new FlameBottleExplodeEvent($this->owner, $player);
+                    $event->call();
                 }
             }
         }), 20 * FlameBottle::DELAY, 20 * 0.5);
