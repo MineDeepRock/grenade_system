@@ -7,8 +7,6 @@ namespace grenade_system\interpreters;
 use grenade_system\models\FlameBottle;
 use grenade_system\clients\FlameBottleClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
-use grenade_system\pmmp\events\FlameBottleExplodeEvent;
-use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\scheduler\ClosureTask;
 use pocketmine\scheduler\TaskScheduler;
