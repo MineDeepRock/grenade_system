@@ -31,19 +31,8 @@ class FlameBottleInterpreter extends GrenadeInterpreter
     function explode(GrenadeEntity $entity): void {
         $this->handler = $this->scheduler->scheduleDelayedRepeatingTask(new ClosureTask(function (int $tick) use ($entity): void {
             if ($this->owner->isOnline()) {
-                for ($i = 0; $i < 15; ++$i) {
-                    FlameBottleClient::explodeParticle($entity->getLevel(), new Vector3(
-                        $entity->getX() + rand(-FlameBottle::RANGE, FlameBottle::RANGE),
-                        $entity->getY() + rand(0, 2),
-                        $entity->getZ() + rand(-FlameBottle::RANGE, FlameBottle::RANGE)
-                    ));
-                }
-                $players = $this->getWithinRangePlayers($entity->getPosition());
-                foreach ($players as $player) {
-                    $event = new FlameBottleExplodeEvent($this->owner, $player);
-                    $event->call();
-                }
+                FlameBottleClient::setFireOnBlock($entity->getLevel(), $entity->getPosition());
             }
-        }), 20 * FlameBottle::DELAY, 20 * 0.5);
+        }), 20 * FlameBottle::DELAY, 20 * 1);
     }
 }
