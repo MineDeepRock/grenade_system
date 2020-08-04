@@ -13,6 +13,7 @@ class FragGrenadeClient
 {
     static function explodeParticle(Level $level, Vector3 $pos): void {
         $level->addParticle(new HugeExplodeParticle($pos));
+        self::playSound($level, $pos);
     }
 
     static function playSound(Level $level, Vector3 $pos): void {
