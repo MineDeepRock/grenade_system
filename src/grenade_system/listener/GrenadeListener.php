@@ -7,12 +7,14 @@ use grenade_system\models\FragGrenade;
 use grenade_system\models\SmokeGrenade;
 use grenade_system\pmmp\entities\FlameBottleEntity;
 use grenade_system\pmmp\entities\FragGrenadeEntity;
+use grenade_system\pmmp\entities\GrenadeEntity;
 use grenade_system\pmmp\entities\SmokeGrenadeEntity;
 use grenade_system\pmmp\events\ConsumedGrenadeItemEvent;
 use grenade_system\pmmp\items\FlameBottleItem;
 use grenade_system\pmmp\items\FragGrenadeItem;
 use grenade_system\pmmp\items\GrenadeItem;
 use grenade_system\pmmp\items\SmokeGrenadeItem;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -109,6 +111,12 @@ class GrenadeListener implements Listener
 
                 }
             }
+        }
+    }
+
+    public function onDamaged(EntityDamageEvent $event) {
+        if ($event->getEntity() instanceof GrenadeEntity) {
+            $event->setCancelled();
         }
     }
 }
