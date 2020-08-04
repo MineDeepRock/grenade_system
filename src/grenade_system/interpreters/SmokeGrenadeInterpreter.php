@@ -4,7 +4,6 @@
 namespace grenade_system\interpreters;
 
 
-use Closure;
 use grenade_system\models\SmokeGrenade;
 use grenade_system\clients\SmokeGrenadeClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
@@ -28,7 +27,9 @@ class SmokeGrenadeInterpreter extends GrenadeInterpreter
     }
 
     public function explode(GrenadeEntity $entity): void {
-        $this->handler = $this->scheduler->scheduleDelayedRepeatingTask(new ClosureTask(function (int $tick) use ($level, $entity, $onExploded): void {
+        $level = $entity->getLevel();
+
+        $this->handler = $this->scheduler->scheduleDelayedRepeatingTask(new ClosureTask(function (int $tick) use ($level, $entity): void {
             if ($this->owner->isOnline()) {
                 for ($i = 0; $i < 15; ++$i) {
                     SmokeGrenadeClient::explodeParticle($level, new Vector3(

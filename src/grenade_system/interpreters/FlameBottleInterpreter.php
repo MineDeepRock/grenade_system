@@ -34,10 +34,11 @@ class FlameBottleInterpreter extends GrenadeInterpreter
                 for ($i = 0; $i < 15; ++$i) {
                     FlameBottleClient::explodeParticle($entity->getLevel(), new Vector3(
                         $entity->getX() + rand(-FlameBottle::RANGE, FlameBottle::RANGE),
-                        $entity->getY() + rand(0,2),
+                        $entity->getY() + rand(0, 2),
                         $entity->getZ() + rand(-FlameBottle::RANGE, FlameBottle::RANGE)
                     ));
-                }      $players = $this->getWithinRangePlayers($entity->getPosition());
+                }
+                $players = $this->getWithinRangePlayers($entity->getPosition());
                 foreach ($players as $player) {
                     $event = new FlameBottleExplodeEvent($this->owner, $player);
                     $event->call();

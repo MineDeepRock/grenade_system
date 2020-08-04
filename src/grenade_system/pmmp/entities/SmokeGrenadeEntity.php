@@ -25,6 +25,8 @@ class SmokeGrenadeEntity extends GrenadeEntity
             $scheduler);
         parent::__construct($level, $owner, $scheduler);
 
+        $this->interpreter->explode($this);
+
         $scheduler->scheduleDelayedTask(new ClosureTask(function (int $tick): void {
             if ($this->isAlive()) $this->kill();
         }), 20 * SmokeGrenade::DURATION);
