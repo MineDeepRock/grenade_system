@@ -8,7 +8,7 @@ use grenade_system\models\Grenade;
 use pocketmine\event\Event;
 use pocketmine\Player;
 
-class ConsumedGrenadeItemEvent extends Event
+class ConsumedGrenadeEvent extends Event
 {
     private $owner;
     private $grenade;

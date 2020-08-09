@@ -2,14 +2,10 @@
 
 namespace grenade_system\listener;
 
-use grenade_system\models\FlameBottle;
-use grenade_system\models\FragGrenade;
-use grenade_system\models\SmokeGrenade;
 use grenade_system\pmmp\entities\FlameBottleEntity;
 use grenade_system\pmmp\entities\FragGrenadeEntity;
 use grenade_system\pmmp\entities\GrenadeEntity;
 use grenade_system\pmmp\entities\SmokeGrenadeEntity;
-use grenade_system\pmmp\events\ConsumedGrenadeItemEvent;
 use grenade_system\pmmp\items\FlameBottleItem;
 use grenade_system\pmmp\items\FragGrenadeItem;
 use grenade_system\pmmp\items\GrenadeItem;
@@ -94,18 +90,12 @@ class GrenadeListener implements Listener
                     switch ($item->getId()) {
                         case FragGrenadeItem::ITEM_ID:
                             $this->spawnFragGrenadeEntity($player);
-                            $e = new ConsumedGrenadeItemEvent($player,new FragGrenade());
-                            $e->call();
                             break;
                         case SmokeGrenadeItem::ITEM_ID:
                             $this->spawnSmokeGrenadeEntity($player);
-                            $e = new ConsumedGrenadeItemEvent($player,new SmokeGrenade());
-                            $e->call();
                             break;
                         case FlameBottleItem::ITEM_ID:
                             $this->spawnFlameBottleEntity($player);
-                            $e = new ConsumedGrenadeItemEvent($player,new FlameBottle());
-                            $e->call();
                             break;
                     }
 

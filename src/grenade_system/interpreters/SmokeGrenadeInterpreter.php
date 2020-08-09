@@ -4,9 +4,11 @@
 namespace grenade_system\interpreters;
 
 
+use grenade_system\models\FragGrenade;
 use grenade_system\models\SmokeGrenade;
 use grenade_system\clients\SmokeGrenadeClient;
 use grenade_system\pmmp\entities\GrenadeEntity;
+use grenade_system\pmmp\events\ConsumedGrenadeEvent;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\scheduler\ClosureTask;
@@ -21,6 +23,9 @@ class SmokeGrenadeInterpreter extends GrenadeInterpreter
     }
 
     public function stop() {
+        $e = new ConsumedGrenadeEvent($this->owner, new FragGrenade());
+        $e->call();
+
         if ($this->handler !== null) {
             $this->handler->cancel();
         }
