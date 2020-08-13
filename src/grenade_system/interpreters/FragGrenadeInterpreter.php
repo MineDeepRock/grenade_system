@@ -24,13 +24,14 @@ class FragGrenadeInterpreter extends GrenadeInterpreter
         $e->call();
 
         $this->scheduler->scheduleDelayedTask(new ClosureTask(function (int $i) use ($entity): void {
-            if ($entity->isAlive()) $entity->kill();
             FragGrenadeClient::explodeParticle($entity->getLevel(), $entity->getPosition());
             $players = $this->getWithinRangePlayers($entity->getPosition());
             foreach ($players as $player) {
                 $event = new FragGrenadeExplodeEvent($this->owner, $player, $entity->getPosition()->distance($player->getPosition()));
                 $event->call();
             }
+
+            if ($entity->isAlive()) $entity->kill();
         }), 20 * $this->grenade::DELAY);
     }
 }
