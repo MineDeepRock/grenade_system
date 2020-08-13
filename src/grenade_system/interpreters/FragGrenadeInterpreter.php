@@ -24,6 +24,8 @@ class FragGrenadeInterpreter extends GrenadeInterpreter
         $e->call();
 
         $this->scheduler->scheduleDelayedTask(new ClosureTask(function (int $i) use ($entity): void {
+            if ($entity->getLevel() === null) return;
+
             FragGrenadeClient::explodeParticle($entity->getLevel(), $entity->getPosition());
             $players = $this->getWithinRangePlayers($entity->getPosition());
             foreach ($players as $player) {
