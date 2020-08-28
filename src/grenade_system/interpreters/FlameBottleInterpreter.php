@@ -39,6 +39,8 @@ class FlameBottleInterpreter extends GrenadeInterpreter
 
                 $players = $this->getWithinRangePlayers($entity->getPosition());
                 foreach ($players as $player) {
+                    if (abs($player->getY() - $entity->getY()) > 2) continue;
+
                     $event = new PlayerBurnedByFlameEvent($this->owner, $player);
                     $event->call();
                 }
