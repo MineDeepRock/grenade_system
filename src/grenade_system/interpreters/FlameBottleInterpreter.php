@@ -25,7 +25,7 @@ class FlameBottleInterpreter extends GrenadeInterpreter
     }
 
     public function stop() {
-        $e = new ConsumedGrenadeEvent($this->owner, new FragGrenade());
+        $e = new ConsumedGrenadeEvent($this->owner, new FlameBottle());
         $e->call();
         if ($this->handler) {
             $this->handler->cancel();
